@@ -1,10 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <title>Elemzet Site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eLeMZet</title>
+  <style>
+    :root {
+      --max-width: 800px;
+      --border-color: #666;
+      --text-color: #222;
+      --bg-color: #fff;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+    header, main, footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .branding {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-area {
+      width: 50px;
+      height: 50px;
+      border: 2px dashed var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+    }
+    .hero {
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .about {
+      max-width: 60ch;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    .logo-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      justify-items: center;
+      padding: 2rem 0;
+    }
+    .logo-slot {
+      position: relative;
+      width: 100%;
+      max-width: 200px;
+      aspect-ratio: 1 / 1;
+      border: 2px dashed var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-slot img {
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border-color);
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-</body>
+  <header>
+    <div class="branding">
+      <div class="logo-area" aria-label="Main logo">Logo</div>
+      <h1>eLeMZet</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Start</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#logos">Logos</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h2>Welcome to eLeMZet</h2>
+      <p>Placeholder tagline goes here.</p>
+    </section>
+    <section id="about" class="about">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+      <p>Cras venenatis euismod malesuada. Nulla at porttitor tortor, at posuere orci.</p>
+      <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+    </section>
+    <section id="logos" class="logo-gallery">
+      <div class="logo-slot">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Logo placeholder" aria-label="Logo placeholder" data-slot="logo-1">
+        <span>Insert logo here</span>
+      </div>
+      <div class="logo-slot">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Logo placeholder" aria-label="Logo placeholder" data-slot="logo-2">
+        <span>Insert logo here</span>
+      </div>
+      <div class="logo-slot">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Logo placeholder" aria-label="Logo placeholder" data-slot="logo-3">
+        <span>Insert logo here</span>
+      </div>
+      <div class="logo-slot">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Logo placeholder" aria-label="Logo placeholder" data-slot="logo-4">
+        <span>Insert logo here</span>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 eLeMZet</p>
+  </footer>
+  </body>
 </html>
