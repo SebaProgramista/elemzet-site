@@ -6,10 +6,71 @@
 <title>eLeMZet</title>
 <style>
 :root {
-  --black: #000;
-  --dark: #111;
-  --white: #fff;
-  --gray: #e5e5e5;
+  --bg: #fff;
+  --fg: #000;
+  --surface: #fff;
+  --border: #e5e5e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000;
+    --fg: #fff;
+    --surface: #111;
+    --border: #333;
+  }
+}
+#theme-toggle {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#theme-toggle + label {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--fg);
+  transition: background .2s, color .2s, border-color .2s;
+}
+#theme-toggle + label:hover {
+  border-color: var(--fg);
+}
+#theme-toggle:focus-visible + label {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+#theme-toggle:checked + label {
+  background: var(--fg);
+  color: var(--bg);
+}
+#theme-toggle:checked ~ .page {
+  --bg: #000;
+  --fg: #fff;
+  --surface: #111;
+  --border: #333;
+}
+@media (prefers-color-scheme: dark) {
+  #theme-toggle:checked ~ .page {
+    --bg: #fff;
+    --fg: #000;
+    --surface: #fff;
+    --border: #e5e5e5;
+  }
+}
+.page {
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 *,*::before,*::after {
   box-sizing: border-box;
@@ -17,22 +78,39 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background: var(--white);
-  color: var(--black);
   line-height: 1.5;
 }
-header {
+.hero {
   padding: 4rem 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
-h1 {
+.hero h1 {
   margin: 0;
   font-size: 2rem;
+}
+.subtitle {
+  max-width: 40ch;
+}
+.logo-slot {
+  width: 160px;
+  height: 160px;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
 }
 main {
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  flex: 1 0 auto;
 }
 .cards {
   display: grid;
@@ -45,25 +123,25 @@ main {
   }
 }
 .card {
-  border: 1px solid var(--gray);
+  border: 1px solid var(--border);
   border-radius: 0.5rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  background: var(--white);
+  background: var(--surface);
   transition: border-color .2s;
 }
 .card:hover,
 .card:focus-within {
-  border-color: var(--dark);
+  border-color: var(--fg);
 }
 .avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,24 +165,24 @@ main {
 }
 .socials a {
   text-decoration: none;
-  color: var(--black);
-  border: 1px solid var(--gray);
+  color: var(--fg);
+  border: 1px solid var(--border);
   padding: 0.5rem;
   border-radius: 0.25rem;
   transition: background .2s, color .2s, border-color .2s;
 }
 .socials a:hover {
-  background: var(--black);
-  color: var(--white);
+  background: var(--fg);
+  color: var(--bg);
 }
 .socials a:focus-visible {
-  outline: 2px solid var(--dark);
+  outline: 2px solid var(--fg);
   outline-offset: 2px;
 }
 footer {
   text-align: center;
   padding: 2rem 1rem;
-  border-top: 1px solid var(--gray);
+  border-top: 1px solid var(--border);
   font-size: 0.875rem;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -115,37 +193,43 @@ footer {
 </style>
 </head>
 <body>
-<header>
-<h1>Welcome to eLeMZet</h1>
+<input type="checkbox" id="theme-toggle">
+<label for="theme-toggle" aria-label="Przełącz motyw">🌓</label>
+<div class="page">
+<header class="hero">
+  <h1>Welcome to eLeMZet</h1>
+  <p class="subtitle">Krótki opis projektu lorem ipsum dolor sit amet.</p>
+  <div class="logo-slot" aria-label="eLeMZet logo">eLeMZet logo</div>
 </header>
 <main>
-<section class="cards">
-<article class="card">
-<div class="avatar">A</div>
-<h2>Person A</h2>
-<p>Short bio placeholder.</p>
-<ul class="socials">
-<li><a href="#">Instagram</a></li>
-<li><a href="#">X/Twitter</a></li>
-<li><a href="#">YouTube</a></li>
-<li><a href="#">Twitch</a></li>
-</ul>
-</article>
-<article class="card">
-<div class="avatar">B</div>
-<h2>Person B</h2>
-<p>Short bio placeholder.</p>
-<ul class="socials">
-<li><a href="#">Instagram</a></li>
-<li><a href="#">X/Twitter</a></li>
-<li><a href="#">YouTube</a></li>
-<li><a href="#">Twitch</a></li>
-</ul>
-</article>
-</section>
+  <section class="cards">
+    <article class="card">
+      <div class="avatar">A</div>
+      <h2>Person A</h2>
+      <p>Krótki opis osoby A.</p>
+      <ul class="socials">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">X/Twitter</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Twitch</a></li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="avatar">B</div>
+      <h2>Person B</h2>
+      <p>Krótki opis osoby B.</p>
+      <ul class="socials">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">X/Twitter</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Twitch</a></li>
+      </ul>
+    </article>
+  </section>
 </main>
 <footer>
-<p>&copy; 2024 eLeMZet</p>
+  <p>&copy; 2024 eLeMZet</p>
 </footer>
+</div>
 </body>
 </html>
